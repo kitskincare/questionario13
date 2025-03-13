@@ -1,177 +1,212 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionário Skincare</title>
+    <title>Questionário de Skincare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Old+Style&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: "Goudy Old Style", serif;
-            text-align: center;
-            background-image: url('imagens/fundo.jpg');
+            font-family: 'Goudy Old Style', serif;
+            background-image: url('imagem/fundo.jpg');
             background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            color: #fff;
+            margin: 0;
+            padding: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow-y: scroll;
         }
+
         .container {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
             width: 80%;
-            max-width: 500px;
+            max-width: 600px;
+            text-align: center;
         }
-        h1, h2, p, label {
-            font-size: 14px;
+
+        .container h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
         }
-        .destaque {
-            font-weight: bold;
-            text-transform: uppercase;
+
+        .container p {
+            font-size: 1.2em;
         }
-        .botao {
+
+        .button {
             background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
             cursor: pointer;
-            display: block;
-            margin: 10px auto;
+            border-radius: 5px;
         }
-        .opcao {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
+
+        .input-field {
+            width: 80%;
+            padding: 10px;
+            font-size: 1em;
+            margin-top: 10px;
         }
-        .opcao img {
-            width: 80px;
-            height: 80px;
-            margin-right: 10px;
-            border-radius: 10px;
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .radio-group {
+            text-align: left;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container" id="tela1">
-        <h1>Qual é a rotina de skincare <span class="destaque">ideal</span> para a sua pele?</h1>
-        <p>Faça o teste agora, descubra seu tipo de pele e a rotina ideal para ela! É rapidinho!</p>
-        <button class="botao" onclick="mostrarTela(2)">Iniciar</button>
+
+    <!-- Primeira página -->
+    <div class="container" id="page1">
+        <h1>Qual a rotina de skincare ideal para a sua pele?</h1>
+        <p>Faça um teste agora, descubra seu tipo de pele e a rotina ideal para ela! É rapidinho.</p>
+        <button class="button" onclick="nextPage('page1', 'page2')">Iniciar</button>
     </div>
 
-    <div class="container" id="tela2" style="display: none;">
-        <h2>Qual nome devemos te chamar?</h2>
-        <input type="text" id="nome" placeholder="Digite seu nome">
-        <br><br>
-        <button class="botao" onclick="mostrarTela(3)">Próximo</button>
+    <!-- Segunda página -->
+    <div class="container" id="page2" style="display: none;">
+        <h1>Qual nome devemos te chamar?</h1>
+        <input class="input-field" type="text" id="name" placeholder="Digite seu nome">
+        <button class="button" onclick="nextPage('page2', 'page3')">Próximo</button>
     </div>
 
-    <div class="container" id="tela3" style="display: none;">
-        <h2>Qual a sua idade?</h2>
-        <label><input type="radio" name="idade"> Menos de 18 anos</label><br>
-        <label><input type="radio" name="idade"> 18 a 24 anos</label><br>
-        <label><input type="radio" name="idade"> 25 a 29 anos</label><br>
-        <label><input type="radio" name="idade"> 30 a 39 anos</label><br>
-        <label><input type="radio" name="idade"> 40 a 49 anos</label><br>
-        <label><input type="radio" name="idade"> 50 a 59 anos</label><br>
-        <label><input type="radio" name="idade"> 60+</label><br><br>
-        <button class="botao" onclick="mostrarTela(4)">Próximo</button>
-    </div>
-
-    <div class="container" id="tela4" style="display: none;">
-        <h2>Estamos próximos de identificar o seu tipo de pele</h2>
-        <p>Dica: Para descobrir seu tipo de pele, lave o rosto com um sabonete neutro e espere 30 minutos sem aplicar nenhum produto. Observe como a
-pele reage: se ficar brilhante, é oleosa; se repuxar, é seca; se houver brilho na zona T e ressecamento nas laterais, é mista; e se houver vermelhidão ou
-irritação, é sensível.</p>
-        <button class="botao" onclick="mostrarTela(5)">Próximo</button>
-    </div>
-
-    <div class="container" id="tela5" style="display: none;">
-        <h2>Identifique seu tipo de pele</h2>
-        <div class="opcao"><img src="imagens/imagem1.jpg"><label><input type="radio" name="pele" value="normal"> Normal</label></div>
-        <div class="opcao"><img src="imagens/imagem2.jpg"><label><input type="radio" name="pele" value="seca"> Seca</label></div>
-        <div class="opcao"><img src="imagens/imagem3.jpg"><label><input type="radio" name="pele" value="oleosa"> Oleosa</label></div>
-        <div class="opcao"><img src="imagens/imagem4.jpg"><label><input type="radio" name="pele" value="mista"> Mista</label></div>
-        <div class="opcao"><img src="imagens/imagem5.jpg"><label><input type="radio" name="pele" value="sensivel"> Sensível</label></div>
-        <button class="botao" onclick="mostrarTela(6)">Próximo</button>
-    </div>
-
-    <div class="container" id="tela6" style="display: none;">
-        <h2>Qual o desafio da sua pele?</h2>
-        <div id="opcoesDesafio">
-            <div class="opcao"><img src="imagens/imagem8.jpg"><label><input type="radio" name="desafio" value="rugas"> Rugas / Linhas de expressão / Flacidez do rosto</label></div>
-            <div class="opcao"><img src="imagens/imagem10.jpg"><label><input type="radio" name="desafio" value="manchas"> Manchas escuras / Melasma / Cicatrizes de acne</label></div>
-            <div class="opcao"><img src="imagens/imagem7.jpg"><label><input type="radio" name="desafio" value="oleosidade"> Oleosidade/excesso de brilho</label></div>
-            <div class="opcao"><img src="imagens/imagem14.jpg"><label><input type="radio" name="desafio" value="textura"> Textura irregular</label></div>
-            <div class="opcao"><img src="imagens/imagem15.jpg"><label><input type="radio" name="desafio" value="olheiras"> Olheiras / Bolsas abaixo dos olhos</label></div>
-            <div class="opcao"><img src="imagens/imagem17.jpg"><label><input type="radio" name="desafio" value="iniciar"> Iniciar / Manter os cuidados com a pele</label></div>
+    <!-- Terceira página -->
+    <div class="container" id="page3" style="display: none;">
+        <h1>Qual a sua idade?</h1>
+        <div class="question radio-group">
+            <label><input type="radio" name="age" value="Menos de 18 anos"> Menos de 18 anos</label><br>
+            <label><input type="radio" name="age" value="18 a 24 anos"> 18 a 24 anos</label><br>
+            <label><input type="radio" name="age" value="25 a 29 anos"> 25 a 29 anos</label><br>
+            <label><input type="radio" name="age" value="30 a 39 anos"> 30 a 39 anos</label><br>
+            <label><input type="radio" name="age" value="40 a 49 anos"> 40 a 49 anos</label><br>
+            <label><input type="radio" name="age" value="50 a 59 anos"> 50 a 59 anos</label><br>
+            <label><input type="radio" name="age" value="60 +"> 60 +</label><br>
         </div>
-        <button class="botao" onclick="finalizar()">Finalizar</button>
+        <button class="button" onclick="nextPage('page3', 'page4')">Próximo</button>
     </div>
 
-    <div class="container" id="tela7" style="display: none;">
-        <h2>Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade</h2>
-        <div id="Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade"></div>
+    <!-- Quarta página -->
+    <div class="container" id="page4" style="display: none;">
+        <h1>Vamos te ajudar a identificar seu tipo de pele</h1>
+        <p>Dica: Para descobrir seu tipo de pele, lave o rosto com um sabonete neutro e espere 30 minutos sem aplicar nenhum produto...</p>
+        <button class="button" onclick="nextPage('page4', 'page5')">Próximo</button>
     </div>
 
+    <!-- Quinta página -->
+    <div class="container" id="page5" style="display: none;">
+        <h1>Qual o seu tipo de pele?</h1>
+        <div class="question radio-group">
+            <label><input type="radio" name="skinType" value="Normal"> Normal</label><br>
+            <label><input type="radio" name="skinType" value="Seca"> Seca</label><br>
+            <label><input type="radio" name="skinType" value="Oleosa"> Oleosa</label><br>
+            <label><input type="radio" name="skinType" value="Mista"> Mista</label><br>
+            <label><input type="radio" name="skinType" value="Sensível"> Sensível</label><br>
+        </div>
+        <button class="button" onclick="nextPage('page5', 'page6')">Próximo</button>
+    </div>
+
+    <!-- Sexta página - Desafios da pele -->
+    <div class="container" id="page6" style="display: none;">
+        <h1>Quais são os maiores desafios da sua pele?</h1>
+        <div class="question radio-group">
+            <label><input type="checkbox" name="skinChallenge" value="Acne"> Acne</label><br>
+            <label><input type="checkbox" name="skinChallenge" value="Rugas"> Rugas</label><br>
+            <label><input type="checkbox" name="skinChallenge" value="Ressecamento"> Ressecamento</label><br>
+            <label><input type="checkbox" name="skinChallenge" value="Oleosidade"> Oleosidade</label><br>
+            <label><input type="checkbox" name="skinChallenge" value="Manchas"> Manchas</label><br>
+        </div>
+        <button class="button" onclick="nextPage('page6', 'page7')">Próximo</button>
+    </div>
+
+    <!-- Sétima página - Link para o produto no Mercado Livre -->
+    <div class="container" id="page7" style="display: none;">
+        <h1>Receba o link do produto ideal para sua pele!</h1>
+        <p id="productLinkMessage"></p>
+        <button class="button" onclick="redirectToProduct()">Ir para o Mercado Livre</button>
+    </div>
+
+    <!-- Função de navegação entre as páginas -->
     <script>
-        function mostrarTela(tela) {
-        for (let i = 1; i <= 7; i++) {
-            document.getElementById('tela' + i).style.display = 'none';
-        }
-        document.getElementById('tela' + tela).style.display = 'block';
-    }
-
-    function finalizar() {
-        const tipoPele = document.querySelector('input[name="pele"]:checked')?.value;
-        const desafio = document.querySelector('input[name="desafio"]:checked')?.value;
-
-        if (!tipoPele || !desafio) {
-            alert("Por favor, selecione um tipo de pele e um desafio antes de continuar.");
-            return;
+        function nextPage(currentPage, nextPage) {
+            document.getElementById(currentPage).style.display = 'none';
+            document.getElementById(nextPage).style.display = 'block';
         }
 
-        // Mapeamento dos links de acordo com tipo de pele e desafio
-        const links = {
-            normal: {
-                rugas: "c6fe5c94d07342",
-                manchas: "ce024bba0a06f4",
-                textura: "c9177722052e73",
-                olheiras: "c099b95cfbc592",
-                iniciar: "cb488123148ae3"
-            },
-            seca: {
-                rugas: "c27058bf5435c0",
-                manchas: "c576effffa9d44",
-                textura: "c82c339b452790",
-                olheiras: "c0da964a3bc0f3",
-                iniciar: "ca00d8b5b4709f"
-            },
-            Oleosa: {
-                rugas: "c27058bf5435c0",
-                manchas: "c576effffa9d44",
-                textura: "c82c339b452790",
-                olheiras: "c0da964a3bc0f3",
-                iniciar: "ca00d8b5b4709f"
+        function getAnswer(name) {
+            let answers = [];
+            const elements = document.getElementsByName(name);
+            for (let el of elements) {
+                if (el.checked || el.type === 'text' || el.type === 'checkbox') {
+                    if (el.type === 'checkbox' && el.checked) {
+                        answers.push(el.value);
+                    } else if (el.type !== 'checkbox') {
+                        answers.push(el.value);
+                    }
+                }
             }
-        };
-
-        if (links[tipoPele] && links[tipoPele][desafio]) {
-            const link = links[tipoPele][desafio];
-
-            document.getElementById('Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade').innerHTML = `
-                <button class="botao" onclick="window.location.href='https://www.bioage.com.br/professional/cart/create?code=${link}'">
-                    KIT SKINCARE PELE ${tipoPele.toUpperCase()}/${desafio.toUpperCase()}
-                </button>
-            `;
-
-            mostrarTela(7);
-        } else {
-            alert("Nenhuma combinação encontrada. Verifique suas escolhas.");
+            return answers.join(', ');
         }
-    }
-</script>
+
+        function redirectToProduct() {
+            const name = document.getElementById('name').value;
+            const age = getAnswer('age');
+            const skinType = getAnswer('skinType');
+            const skinChallenges = getAnswer('skinChallenge');
+
+            let productLink = "https://www.mercadolivre.com.br/";
+
+            // Definir o link do produto com base no tipo de pele
+            if (skinType.includes('Oleosa')) {
+                productLink += "cuidados-para-pele-oleosa";
+            } else if (skinType.includes('Seca')) {
+                productLink += "cuidados-para-pele-seca";
+            } else if (skinType.includes('Mista')) {
+                productLink += "cuidados-para-pele-mista";
+            } else {
+                productLink += "cuidados-para-todos-os-tipos-de-pele";
+            }
+
+            // Adicionar os desafios da pele ao link
+            if (skinChallenges.includes('Acne')) {
+                productLink += "-acne";
+            }
+            if (skinChallenges.includes('Rugas')) {
+                productLink += "-rugas";
+            }
+            if (skinChallenges.includes('Ressecamento')) {
+                productLink += "-ressecamento";
+            }
+            if (skinChallenges.includes('Oleosidade')) {
+                productLink += "-oleosidade";
+            }
+            if (skinChallenges.includes('Manchas')) {
+                productLink += "-manchas";
+            }
+
+            // Customize a mensagem com os dados do usuário
+            const message = `Olá, ${name}! Com base nas suas respostas, recomendamos produtos para ${skinType.toLowerCase()} e desafios como ${skinChallenges}.`;
+            document.getElementById('productLinkMessage').textContent = message;
+
+            // Redirecionar para o link final do Mercado Livre
+            window.location.href = productLink;
+        }
+    </script>
+
 </body>
 </html>
+
